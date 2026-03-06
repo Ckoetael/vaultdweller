@@ -60,8 +60,11 @@ class VaultWarden:
     def _extract_creds(self, item: Cipher):
         org_key = self._org_keys.get(item.OrganizationId)
 
-        password = decrypt_text(item.Login.Password, org_key)
         username = decrypt_text(item.Login.Username, org_key)
+
+        password = None
+        if item.Login.Password:
+            password = decrypt_text(item.Login.Password, org_key)
 
         uri = None
         if item.Login.Uri:

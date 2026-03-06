@@ -285,7 +285,7 @@ class SyncData(PermissiveBaseModel):
 class Creds(BaseModel):
     item_id: str
     username: str
-    password: str
+    password: Optional[str] = None
     topt: Optional[str]
     totp_secret: Optional[str] = None
     uri: Optional[str]
